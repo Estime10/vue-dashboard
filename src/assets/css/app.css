@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Candal&family=Rubik:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+
+    font-family: 'Rubik', sans-serif;
+}
+
+body{
+    background-color: black;
+    color: white;
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 16px;
+}
+h1{
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+    color: black;
+    margin-top: 10px;
+}
+
+.btn{
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: x-large;
+    font-weight: bold;
+}
+.btn:hover{
+    background-color: #760000;
+    color: black;
+}
+.btn-post{
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 30%;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: x-large;
+  font-weight: bold;
+}
+.btn-post:hover{
+  background-color: #760000;
+  color: black;
+}
+
