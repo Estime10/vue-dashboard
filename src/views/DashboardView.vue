@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Welcome {{ username }}</h1> 
+    <h1>Welcome {{ user.name }}</h1> 
   </div>
   <div class="container">
     <h1>Create Post</h1>
@@ -22,27 +22,58 @@
 import { useStore } from 'vuex';
 import { GET_USERNAME } from "../store/storeconstants";
 import PostForm from '../components/PostForm.vue';
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { uid } from 'uid';
 const uploadList = ref([]);
-
+const user = ref("");
 const $store = useStore();
 
-// Utilisez le nom "username" pour stocker la valeur du nom d'utilisateur
-const username = $store.getters[`auth/${GET_USERNAME}`];
+// Récupérer le nom d'utilisateur depuis le store Vuex lors du chargement initial de la page
+const fetchUser = () => {
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  if (storedUser) {
+    user.value = storedUser;
+  } else {
+    // Si le nom d'utilisateur n'est pas dans le localStorage, on le récupère depuis le store Vuex
+    user.value = $store.getters[`auth/${GET_USERNAME}`];
+    // Puis on le stocke dans le localStorage pour les prochaines visites
+    localStorage.setItem('user', JSON.stringify(user.value));
+  }
+};
+fetchUser();
+
+// Mettre à jour le nom d'utilisateur dans le localStorage lorsqu'il change
+watch(user, () => {
+  localStorage.setItem('user', JSON.stringify(user.value));
+});
+
+// Récupérer les posts depuis localStorage lors du chargement initial de la page
+const fetchPosts = () => {
+  const storedPosts = JSON.parse(localStorage.getItem('posts'));
+  if (storedPosts) {
+    uploadList.value = storedPosts;
+  }
+};
+fetchPosts();
+
+// Mettre à jour les posts dans le localStorage
+watch(uploadList, () => {
+  localStorage.setItem('posts', JSON.stringify(uploadList.value));
+}, { deep: true });
 
 // Fonction pour gérer le formulaire soumis
 const createPost = ({ imageContent, isImage, selectedFile }) => {
-  // Ajoute le fichier sélectionné à la liste des fichiers téléchargés
+  // Ajouter le fichier sélectionné à la liste des fichiers téléchargés
   uploadList.value.push({
     id: uid(),
     name: selectedFile.name,
     isImage: isImage,
     imageContent: imageContent,
-    // Ajoutez d'autres propriétés du fichier ici si nécessaire
+    // Ajouter d'autres propriétés du fichier ici si nécessaire
   });
 };
 </script>
+
 
 <style lang="css">
 .container {

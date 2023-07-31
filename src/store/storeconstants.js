@@ -4,6 +4,9 @@ export const SET_AUTHENTICATION = '[mutations] set authentication';
 // Constante pour définir le getter pour vérifier si l'utilisateur est authentifié.
 export const IS_USER_AUTHENTICATED = '[getters] is user authenticated';
 
+// Constante pour définir la mutation pour définir le token.
+export const SET_TOKEN = '[mutations] set token';
+
 // Constante pour définir la mutation pour définir le nom.
 export const SET_NAME = '[mutations] set name';
 
@@ -16,4 +19,5 @@ export const SET_USERNAME = '[mutations] set username';
 // Constante pour définir le getter pour obtenir le nom d'utilisateur.
 export const GET_USERNAME = '[getters] get username';
 
+// Constante pour définir la mutation pour définir le fichier post.
 export const SET_POST = '[mutations] post file';

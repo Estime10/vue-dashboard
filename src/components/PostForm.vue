@@ -54,6 +54,9 @@
   
       // Lire le contenu du fichier en tant que Data URL (base64)
       reader.readAsDataURL(fileState.selectedFile);
+
+      // Stocker le fichier dans le localStorage
+      localStorage.setItem('file-selected', JSON.stringify(fileState.selectedFile));
     } else {
       fileState.invalid = true;
       fileState.errMsg = "Please select a file";
